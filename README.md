@@ -34,7 +34,7 @@ Open http://127.0.0.1:5000 and click each link:
 
 | Route | What Sentry receives |
 |---|---|
-| /error | Average price calculation; returns 0 when there are no items (no error) |
+| /error | Average price calculation; an empty order returns HTTP 400 with a descriptive error message |
 | /handled | Caught `KeyError` with breadcrumb + `order` context (Issues) |
 | /message | Warning-level message (Issues) |
 | /checkout | Transaction with 3 custom spans (Performance / Traces) |

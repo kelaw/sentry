@@ -54,8 +54,22 @@ def unhandled_error():
     # The Flask integration catches this automatically and reports it.
     order_total = 100
     items = 0
-    avg_price = order_total / items if items > 0 else 0
-    return jsonify(avg_price=avg_price)
+    if items <= 0:
+        # An empty order has no average price; reject it instead of dividing by zero.
+        return (
+            jsonify(
+                error="empty_order",
+                message=(
+                    "Cannot calculate the average item price: the order contains "
+                    f"{items} items (order total: {order_total}). "
+                    "Add at least one item to the order and try again."
+                ),
+                order_total=order_total,
+                items=items,
+            ),
+            400,
+        )
+    return jsonify(avg_price=order_total / items)
 
 
 @app.route("/handled")
