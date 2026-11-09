@@ -34,7 +34,7 @@ Open http://127.0.0.1:5000 and click each link:
 
 | Route | What Sentry receives |
 |---|---|
-| /error | Unhandled `ZeroDivisionError` (Issues) |
+| /error | Average price calculation; returns 0 when there are no items (no error) |
 | /handled | Caught `KeyError` with breadcrumb + `order` context (Issues) |
 | /message | Warning-level message (Issues) |
 | /checkout | Transaction with 3 custom spans (Performance / Traces) |

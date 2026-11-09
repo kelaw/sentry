@@ -54,7 +54,8 @@ def unhandled_error():
     # The Flask integration catches this automatically and reports it.
     order_total = 100
     items = 0
-    return jsonify(avg_price=order_total / items)
+    avg_price = order_total / items if items > 0 else 0
+    return jsonify(avg_price=avg_price)
 
 
 @app.route("/handled")
